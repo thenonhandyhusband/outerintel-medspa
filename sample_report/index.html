@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Med Spa Competitive Intelligence Report — Outer Intel</title>
+  <meta name="description" content="Sample competitive intelligence report for a med spa practice. See what Outer Intel delivers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0D1B35;
+      --navy-mid: #152747;
+      --accent: #0EA5E9;
+      --accent-dark: #0284C7;
+      --amber: #D97706;
+      --red-flag: #DC2626;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --gray-800: #1E293B;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    body {
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--gray-800);
+      background: var(--gray-50);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+    /* ── LAYOUT ── */
+    .report-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--white);
+      box-shadow: 0 0 60px rgba(0,0,0,0.08);
+    }
+
+    /* ── COVER ── */
+    .cover {
+      background: var(--navy);
+      padding: 56px 56px 48px;
+      color: white;
+    }
+    .cover-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+    .cover-logo-text {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.02em;
+    }
+    .cover-logo-text span { color: var(--accent); }
+    .cover-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 48px;
+      transition: color 0.15s;
+    }
+    .cover-back:hover { color: var(--accent); text-decoration: none; }
+    .cover-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .cover-title {
+      font-family: var(--serif);
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: white;
+      margin-bottom: 20px;
+    }
+    .cover-meta {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 8px;
+    }
+    .cover-scope {
+      display: inline-block;
+      margin-top: 24px;
+      background: rgba(14,165,233,0.12);
+      border: 1px solid rgba(14,165,233,0.25);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ── EXEC SUMMARY ── */
+    .exec-summary {
+      background: var(--gray-50);
+      padding: 40px 56px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .exec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .exec-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 20px 22px;
+    }
+    .exec-card-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .exec-card-value {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+    .exec-card p { font-size: 13px; color: var(--gray-600); line-height: 1.5; }
+    .exec-card.risk .exec-card-label { color: var(--amber); }
+    .exec-card.risk .exec-card-value { color: var(--amber); }
+    .exec-card.win .exec-card-label { color: #16a34a; }
+    .exec-card.win .exec-card-value { color: #16a34a; }
+
+    /* ── REPORT SECTIONS ── */
+    .report-section {
+      padding: 48px 56px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .report-section:last-of-type { border-bottom: none; }
+    .report-section-alt { background: var(--gray-50); }
+
+    .section-num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .section-sub {
+      font-size: 14px;
+      color: var(--gray-600);
+      margin-bottom: 28px;
+    }
+
+    /* ── BAR CHARTS ── */
+    .chart-row {
+      margin-bottom: 14px;
+    }
+    .chart-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+    .chart-label { font-size: 14px; font-weight: 500; color: var(--gray-800); }
+    .chart-count { font-size: 13px; font-weight: 600; color: var(--gray-600); }
+    .chart-track {
+      height: 10px;
+      background: var(--gray-100);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .chart-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: var(--accent);
+    }
+    .chart-fill.flagged { background: var(--amber); }
+    .chart-fill.flag-red { background: var(--red-flag); }
+    .chart-fill.you { background: var(--amber); }
+
+    /* ── INSIGHT CALLOUT ── */
+    .insight {
+      margin-top: 24px;
+      padding: 18px 22px;
+      background: rgba(14,165,233,0.06);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      font-size: 14px;
+      color: var(--gray-700, #334155);
+      line-height: 1.6;
+    }
+    .insight strong { color: var(--navy); }
+
+    .flag-insight {
+      margin-top: 24px;
+      padding: 18px 22px;
+      background: rgba(217,119,6,0.06);
+      border-left: 3px solid var(--amber);
+      border-radius: 0 8px 8px 0;
+      font-size: 14px;
+      color: var(--gray-800);
+      line-height: 1.6;
+    }
+
+    /* ── KEYWORD GRID ── */
+    .keyword-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 8px;
+    }
+    .kw-col-title {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .kw-col-title.positive { color: var(--accent); }
+    .kw-col-title.negative { color: var(--red-flag); }
+    .kw-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: 14px;
+    }
+    .kw-row:last-child { border-bottom: none; }
+    .kw-phrase { color: var(--gray-800); }
+    .kw-count {
+      font-size: 12px;
+      font-weight: 600;
+      background: var(--gray-100);
+      color: var(--gray-600);
+      border-radius: 100px;
+      padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── TABLE ── */
+    .report-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+    .report-table th {
+      background: var(--navy);
+      color: white;
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .report-table th:first-child { border-radius: 8px 0 0 0; }
+    .report-table th:last-child { border-radius: 0 8px 0 0; }
+    .report-table td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--gray-100);
+      color: var(--gray-800);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .report-table tr:last-child td { border-bottom: none; }
+    .report-table tr:nth-child(even) td { background: var(--gray-50); }
+    .opp-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: rgba(14,165,233,0.1);
+      color: var(--accent-dark, #0284C7);
+    }
+
+    /* ── CHECKLIST ── */
+    .checklist-tier { margin-bottom: 32px; }
+    .tier-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    .tier-quick { background: rgba(22,163,74,0.1); color: #15803d; }
+    .tier-medium { background: rgba(14,165,233,0.1); color: var(--accent-dark, #0284C7); }
+    .tier-strategic { background: rgba(13,17,53,0.08); color: var(--navy); }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: 14px;
+      color: var(--gray-800);
+      line-height: 1.5;
+    }
+    .check-item:last-child { border-bottom: none; }
+    .check-box {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--gray-300, #CBD5E1);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── FOOTER CTA ── */
+    .report-footer {
+      background: var(--navy);
+      padding: 48px 56px;
+      text-align: center;
+    }
+    .report-footer p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    .report-footer-headline {
+      font-family: var(--serif);
+      font-size: 24px;
+      color: white;
+      margin-bottom: 12px;
+    }
+    .btn-cta {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-cta:hover { background: var(--accent-dark); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .cover, .exec-summary, .report-section, .report-footer { padding: 32px 24px; }
+      .exec-grid { grid-template-columns: 1fr; }
+      .keyword-grid { grid-template-columns: 1fr; }
+      .report-table { font-size: 12px; }
+      .report-table th, .report-table td { padding: 10px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="report-wrap">
+
+  <!-- ═══ COVER ═══ -->
+  <div class="cover">
+    <div class="cover-brand">
+      <svg width="40" height="32" viewBox="0 0 48 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="1" y="1" width="26" height="20" rx="5" stroke="#0EA5E9" stroke-width="1.5" fill="none" opacity="0.5"/>
+        <path d="M7 21 L3 27 L13 21" stroke="#0EA5E9" stroke-width="1.5" fill="none" stroke-linejoin="round" opacity="0.5"/>
+        <text x="4" y="10" font-size="5" fill="#0EA5E9" opacity="0.6">★★★★★</text>
+        <rect x="4" y="13" width="14" height="2" rx="1" fill="#0EA5E9" opacity="0.4"/>
+        <rect x="4" y="17" width="10" height="2" rx="1" fill="#0EA5E9" opacity="0.3"/>
+        <rect x="20" y="10" width="26" height="20" rx="5" fill="rgba(14,165,233,0.08)" stroke="#0EA5E9" stroke-width="2"/>
+        <path d="M40 30 L45 36 L36 30" stroke="#0EA5E9" stroke-width="2" fill="none" stroke-linejoin="round"/>
+        <rect x="24" y="20" width="3" height="6" rx="0.5" fill="#0EA5E9" opacity="0.35"/>
+        <rect x="29" y="17" width="3" height="9" rx="0.5" fill="#0EA5E9" opacity="0.6"/>
+        <rect x="34" y="19" width="3" height="7" rx="0.5" fill="#0EA5E9" opacity="0.45"/>
+        <rect x="39" y="15" width="3" height="11" rx="0.5" fill="#0EA5E9" opacity="0.9"/>
+      </svg>
+      <div class="cover-logo-text">Outer<span>Intel</span></div>
+    </div>
+
+    <a href="https://medspa.outerintel.com" class="cover-back">← Back to Med Spa</a>
+
+    <div class="cover-label">Med Spa Intelligence · Sample Report</div>
+    <h1 class="cover-title">Med Spa Competitive Intelligence Report</h1>
+    <div class="cover-meta">Glow Theory Austin — Austin, TX</div>
+    <div class="cover-meta">Q1 2025 · Prepared by Outer Intel</div>
+    <div class="cover-scope">Analyzing 934 competitor reviews across 7 practices within 9 miles</div>
+  </div>
+
+  <!-- ═══ EXECUTIVE SUMMARY ═══ -->
+  <div class="exec-summary">
+    <div class="section-num">Executive Summary</div>
+    <div class="section-title">Three Things You Need to Know This Quarter</div>
+    <div class="exec-grid">
+      <div class="exec-card">
+        <div class="exec-card-label">Opportunity Score</div>
+        <div class="exec-card-value">78 / 100</div>
+        <p>Strong market gap — your top competitor has a growing review velocity advantage, but their sentiment on staff experience is declining.</p>
+      </div>
+      <div class="exec-card risk">
+        <div class="exec-card-label">Top Risk</div>
+        <div class="exec-card-value">Botox Pricing</div>
+        <p>32% of 1-star reviews at nearby competitors cite pricing transparency. Patients want unit pricing upfront — before they walk in.</p>
+      </div>
+      <div class="exec-card win">
+        <div class="exec-card-label">Quick Win</div>
+        <div class="exec-card-value">Before/After Content</div>
+        <p>Mentioned in 51% of 5-star reviews at top-rated local competitor. No significant investment required — just a photo workflow.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 1: VELOCITY ═══ -->
+  <div class="report-section">
+    <div class="section-num">Section 1</div>
+    <h2 class="section-title">Competitor Review Velocity — Last 90 Days</h2>
+    <div class="section-sub">New reviews acquired per practice, January 1 – March 15, 2025</div>
+
+    <div class="chart-row">
+      <div class="chart-label-row">
+        <span class="chart-label">Luxe Skin Lounge</span>
+        <span class="chart-count">47 reviews</span>
+      </div>
+      <div class="chart-track"><div class="chart-fill" style="width:100%;" role="img" aria-label="47 reviews"></div></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-label-row">
+        <span class="chart-label">SkinBar ATX</span>
+        <span class="chart-count">38 reviews</span>
+      </div>
+      <div class="chart-track"><div class="chart-fill" style="width:81%;" role="img" aria-label="38 reviews"></div></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-label-row">
+        <span class="chart-label">Radiance Aesthetics</span>
+        <span class="chart-count">29 reviews</span>
+      </div>
+      <div class="chart-track"><div class="chart-fill" style="width:62%;" role="img" aria-label="29 reviews"></div></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-label-row">
+        <span class="chart-label" style="font-weight:700; color: var(--amber);">Glow Theory Austin (YOUR PRACTICE)</span>
+        <span class="chart-count" style="color: var(--amber);">14 reviews</span>
+      </div>
+      <div class="chart-track"><div class="chart-fill you" style="width:30%;" role="img" aria-label="14 reviews — your practice"></div></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-label-row">
+        <span class="chart-label">The Glow Studio</span>
+        <span class="chart-count">13 reviews</span>
+      </div>
+      <div class="chart-track"><div class="chart-fill" style="width:28%; background: var(--gray-200);" role="img" aria-label="13 reviews"></div></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-label-row">
+        <span class="chart-label">Pure Aesthetics ATX</span>
+        <span class="chart-count">10 reviews</span>
+      </div>
+      <div class="chart-track"><div class="chart-fill" style="width:21%; background: var(--gray-200);" role="img" aria-label="10 reviews"></div></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-label-row">
+        <span class="chart-label">Glow &amp; Go Medspa</span>
+        <span class="chart-count">7 reviews</span>
+      </div>
+      <div class="chart-track"><div class="chart-fill" style="width:15%; background: var(--gray-200);" role="img" aria-label="7 reviews"></div></div>
+    </div>
+
+    <div class="insight">
+      <strong>Velocity gap:</strong> Luxe Skin Lounge is outpacing you 3.4× in new review acquisition. Their spike began in January — coinciding with a post-visit SMS review request they added via Birdeye. A similar system could close this gap within 60 days at minimal cost.
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 2: SENTIMENT ═══ -->
+  <div class="report-section report-section-alt">
+    <div class="section-num">Section 2</div>
+    <h2 class="section-title">Sentiment Analysis by Service Category</h2>
+    <div class="section-sub">Positive sentiment rate across all competitor reviews, by category</div>
+
+    <div class="chart-row">
+      <div class="chart-label-row">
+        <span class="chart-label">Injector Skill &amp; Technique</span>
+        <span class="chart-count">86% positive</span>
+      </div>
+      <div class="chart-track"><div class="chart-fill" style="width:86%;"></div></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-label-row">
+        <span class="chart-label">Staff Warmth &amp; Hospitality</span>
+        <span class="chart-count">79% positive</span>
+      </div>
+      <div class="chart-track"><div class="chart-fill" style="width:79%;"></div></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-label-row">
+        <span class="chart-label">Results &amp; Before/After Outcomes</span>
+        <span class="chart-count">74% positive</span>
+      </div>
+      <div class="chart-track"><div class="chart-fill" style="width:74%;"></div></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-label-row">
+        <span class="chart-label">Booking &amp; Scheduling Ease</span>
+        <span class="chart-count">58% positive</span>
+      </div>
+      <div class="chart-track"><div class="chart-fill flagged" style="width:58%;"></div></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-label-row">
+        <span class="chart-label">Pricing Transparency</span>
+        <span class="chart-count">41% positive</span>
+      </div>
+      <div class="chart-track"><div class="chart-fill flag-red" style="width:41%;"></div></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-label-row">
+        <span class="chart-label">Wait Times &amp; Appointment Punctuality</span>
+        <span class="chart-count">47% positive</span>
+      </div>
+      <div class="chart-track"><div class="chart-fill flag-red" style="width:47%;"></div></div>
+    </div>
+
+    <div class="flag-insight">
+      <strong>Pricing transparency is the #1 complaint driver</strong> across all 7 practices. Patients want to know the cost-per-unit for Botox before arriving. A simple pricing FAQ page or pre-consult email template could eliminate this friction point entirely — and differentiate you from competitors still hiding their pricing.
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 3: SERVICE GAPS ═══ -->
+  <div class="report-section">
+    <div class="section-num">Section 3</div>
+    <h2 class="section-title">Service-Level Intelligence — Where Competitors Win and Lose</h2>
+    <div class="section-sub">Competitive strength and opportunity mapped by treatment category</div>
+
+    <table class="report-table" aria-label="Service gap analysis">
+      <thead>
+        <tr>
+          <th scope="col">Service</th>
+          <th scope="col">Competitor Strength</th>
+          <th scope="col">Your Opportunity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Botox / Neurotoxin</strong></td>
+          <td>Luxe Skin Lounge has 23 Botox-specific 5-stars in 90 days, led by their "natural look" messaging</td>
+          <td><span class="opp-tag">Positioning gap</span><br>No differentiated neurotoxin narrative in your recent reviews — "natural" is an ownable claim</td>
+        </tr>
+        <tr>
+          <td><strong>Lip Filler</strong></td>
+          <td>SkinBar ATX dominates lip filler sentiment — highest volume and highest satisfaction across 7 practices</td>
+          <td><span class="opp-tag">Content opportunity</span><br>Before/after lip content drives their review flow; zero lip-specific content in your last 30 reviews</td>
+        </tr>
+        <tr>
+          <td><strong>Skin Tightening / RF</strong></td>
+          <td>Virtually no competitor has strong RF/tightening positioning</td>
+          <td><span class="opp-tag">Open territory</span><br>If you offer Morpheus8 or similar, this is an unclaimed category — first mover wins the search volume</td>
+        </tr>
+        <tr>
+          <td><strong>HydraFacial</strong></td>
+          <td>Table stakes — 5 of 7 practices rated 4.3+ on HydraFacial</td>
+          <td>Differentiate on package depth and add-ons, not the treatment itself</td>
+        </tr>
+        <tr>
+          <td><strong>Chemical Peels</strong></td>
+          <td>Radiance Aesthetics has built a strong peel-specific following</td>
+          <td><span class="opp-tag">Loyalty play</span><br>Peel patients tend to return monthly — a membership model here could increase LTV significantly</td>
+        </tr>
+        <tr>
+          <td><strong>Consultations</strong></td>
+          <td>Major gap — only 1 competitor offers documented free consult with photo review</td>
+          <td><span class="opp-tag">High-value</span><br>Reviews explicitly cite consultations as a booking trigger; promoting yours could lift new patient conversion</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ SECTION 4: KEYWORDS ═══ -->
+  <div class="report-section report-section-alt">
+    <div class="section-num">Section 4</div>
+    <h2 class="section-title">Keyword Intelligence — The Language of Patient Experience</h2>
+    <div class="section-sub">Exact phrases from 5-star and 1-star reviews across all 7 competitor practices</div>
+
+    <div class="keyword-grid">
+      <div>
+        <div class="kw-col-title positive">Top phrases in 5-star reviews</div>
+        <div class="kw-row">
+          <span class="kw-phrase">"natural results"</span>
+          <span class="kw-count">61 mentions</span>
+        </div>
+        <div class="kw-row">
+          <span class="kw-phrase">"didn't look done"</span>
+          <span class="kw-count">44 mentions</span>
+        </div>
+        <div class="kw-row">
+          <span class="kw-phrase">"made me feel comfortable"</span>
+          <span class="kw-count">38 mentions</span>
+        </div>
+        <div class="kw-row">
+          <span class="kw-phrase">"answered all my questions"</span>
+          <span class="kw-count">31 mentions</span>
+        </div>
+        <div class="kw-row">
+          <span class="kw-phrase">"will definitely be back"</span>
+          <span class="kw-count">27 mentions</span>
+        </div>
+        <div class="kw-row">
+          <span class="kw-phrase">"showed me before and after"</span>
+          <span class="kw-count">22 mentions</span>
+        </div>
+      </div>
+      <div>
+        <div class="kw-col-title negative">Top phrases in 1-star reviews</div>
+        <div class="kw-row">
+          <span class="kw-phrase">"didn't tell me the price"</span>
+          <span class="kw-count">34 mentions</span>
+        </div>
+        <div class="kw-row">
+          <span class="kw-phrase">"waited over 30 minutes"</span>
+          <span class="kw-count">26 mentions</span>
+        </div>
+        <div class="kw-row">
+          <span class="kw-phrase">"felt rushed"</span>
+          <span class="kw-count">21 mentions</span>
+        </div>
+        <div class="kw-row">
+          <span class="kw-phrase">"hard to reach anyone"</span>
+          <span class="kw-count">18 mentions</span>
+        </div>
+        <div class="kw-row">
+          <span class="kw-phrase">"results didn't last"</span>
+          <span class="kw-count">15 mentions</span>
+        </div>
+        <div class="kw-row">
+          <span class="kw-phrase">"upselled at checkout"</span>
+          <span class="kw-count">12 mentions</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <strong>Use the 5-star language verbatim.</strong> "Natural results," "didn't look done," and "made me feel comfortable" are the exact phrases patients type into Google when searching for a med spa they can trust. Place them in your Google Business Profile description, homepage hero copy, and treatment page meta descriptions.
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 5: ACTION CHECKLIST ═══ -->
+  <div class="report-section">
+    <div class="section-num">Section 5</div>
+    <h2 class="section-title">Your 90-Day Action Plan</h2>
+    <div class="section-sub">Prioritized by effort vs. impact — start at the top</div>
+
+    <div class="checklist-tier">
+      <div class="tier-label tier-quick">Quick Wins — Week 1–2</div>
+      <div class="check-item">
+        <div class="check-box" aria-hidden="true"></div>
+        <div>Add a Botox pricing FAQ to your Google Business Profile and website — even a range eliminates the #1 complaint driving 1-star reviews at competitors</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" aria-hidden="true"></div>
+        <div>Update your Google Business Profile description with "natural results" and "we take time to answer your questions" — exact language from 5-star competitor reviews</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" aria-hidden="true"></div>
+        <div>Set a 24-hour review response policy — reply to all new Google reviews within one business day; competitors average 3–5 days</div>
+      </div>
+    </div>
+
+    <div class="checklist-tier">
+      <div class="tier-label tier-medium">Medium-Term — Month 1–2</div>
+      <div class="check-item">
+        <div class="check-box" aria-hidden="true"></div>
+        <div>Launch a post-visit review request via SMS or email — target 3+ new reviews per week to close the velocity gap with Luxe Skin Lounge within 60 days</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" aria-hidden="true"></div>
+        <div>Start a before/after photo workflow for every patient who consents — Luxe Skin Lounge's review volume spike correlates directly with before/after content mentions</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" aria-hidden="true"></div>
+        <div>Add a "Free Consultation" page to your website emphasizing the photo review process — reviews explicitly cite consults as a booking trigger for top-rated competitors</div>
+      </div>
+    </div>
+
+    <div class="checklist-tier">
+      <div class="tier-label tier-strategic">Strategic — Month 2–3</div>
+      <div class="check-item">
+        <div class="check-box" aria-hidden="true"></div>
+        <div>If you offer RF skin tightening (Morpheus8, Sofwave, etc.), build a dedicated landing page — this is unclaimed territory in your market and has zero competitor content competing for search</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" aria-hidden="true"></div>
+        <div>Test a monthly peel membership model — peel patients have the highest return rate in your competitor review set; a membership captures that LTV</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" aria-hidden="true"></div>
+        <div>Brief your front desk team on the top complaint pattern — patients who feel "rushed" or "upselled at checkout" almost never return; build a post-treatment script that sets expectations without pressure</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="report-footer">
+    <div class="report-footer-headline">Want a report for your practice?</div>
+    <p>This sample report was prepared by Outer Intel using publicly available review data from Google, Yelp, Yelp, and RealSelf.<br>Data reflects Q1 2025 (January 1 – March 15, 2025). Practice names are fictional.</p>
+    <a href="https://medspa.outerintel.com" class="btn-cta">Get My Free Med Spa Audit</a>
+  </div>
+
+</div>
+
+</body>
+</html>
